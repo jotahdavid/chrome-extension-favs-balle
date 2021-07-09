@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "BalleLinks",
+  "description": "Save your links with style at BalleLinks",
+  "version": "0.0.1",
+  "action": {
+    "default_icon": {
+      "16": "./assets/icon.png",
+      "32": "./assets/icon.png",
+      "48": "./assets/icon.png",
+      "128": "./assets/icon.png"
+    },
+    "default_popup": "./index.html"
+  },
+  "icons": {
+    "16": "./assets/icon.png",
+    "32": "./assets/icon.png",
+    "48": "./assets/icon.png",
+    "128": "./assets/icon.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab"
+  ]
+}
