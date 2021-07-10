@@ -2,7 +2,11 @@ const $starButton = document.querySelector("#star-button");
 const $content = document.querySelector("#favorite-links-list");
 
 $starButton.addEventListener("click", addNewFavorite);
-window.addEventListener("load", renderFavorites);
+
+window.addEventListener("load", () => {
+  renderFavorites();
+  checkIfCurrentTabIsFavorite();
+});
 
 async function getTabData() {
   const queryOptions = { active: true, currentWindow: true };
@@ -22,7 +26,10 @@ function addNewFavorite() {
         const favoritesList = result["STORAGE_KEY"] ? JSON.parse(result["STORAGE_KEY"]) : [];
         favoritesList.push(currentTabData);
     
-        chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, renderFavorites);
+        chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, () => {
+          renderFavorites();
+          activateStar();
+        });
       });
     });
 }
@@ -66,4 +73,23 @@ function renderFavorites() {
 
 function clearFavoritesList() {
   $content.textContent = "";
+}
+
+function checkIfCurrentTabIsFavorite() {
+  getTabData()
+    .then((currentTab) => {
+      chrome.storage.sync.get("STORAGE_KEY", (result) => {
+        if(!result["STORAGE_KEY"]) return;
+
+        const favoritesList = JSON.parse(result["STORAGE_KEY"]);
+
+        favoritesList.forEach((favorite) => {
+          if(currentTab.url === favorite.url) activateStar();
+        });
+      });
+    });
+}
+
+function activateStar() {
+  $starButton.classList.add("--active");
 }

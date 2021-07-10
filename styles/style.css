@@ -55,7 +55,7 @@ h1 {
   width: 40px;
 }
 
-#navbar-star i {
+#navbar-star > i {
   color: rgb(167, 167, 167);
   font-size: 2rem;
   cursor: pointer;
@@ -63,9 +63,13 @@ h1 {
   transition: color .3s ease;
 }
 
-#navbar-star i:hover {
+#navbar-star > i:hover {
   color: rgb(255, 232, 99);
   font-size: 2rem;
+}
+
+#star-button.--active {
+  color: rgb(255, 226, 59);
 }
 
 #navbar-button {
