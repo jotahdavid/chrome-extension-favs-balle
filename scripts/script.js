@@ -22,7 +22,7 @@ function addNewFavorite() {
         const favoritesList = result["STORAGE_KEY"] ? JSON.parse(result["STORAGE_KEY"]) : [];
         favoritesList.push(currentTabData);
     
-        chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, getAllFavorites);
+        chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, renderFavorites);
       });
     });
 }
