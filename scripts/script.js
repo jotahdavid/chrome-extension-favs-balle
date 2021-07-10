@@ -1,4 +1,5 @@
 const $starButton = document.querySelector("#star-button");
+const $content = document.querySelector("#favorite-links-list");
 
 $starButton.addEventListener("click", addNewFavorite);
 window.addEventListener("load", renderFavorites);
@@ -30,14 +31,12 @@ function renderFavorites() {
   chrome.storage.sync.get("STORAGE_KEY", (result) => {
     if(!result["STORAGE_KEY"]) return;
 
-    const $content = document.querySelector("#favorites-link-list");
-    $content.textContent = "";
-
     const favoritesList = JSON.parse(result["STORAGE_KEY"]);
+    clearFavoritesList();
 
     favoritesList.forEach(({ title, url, favIconUrl }) => {
       const div = document.createElement("div");
-      div.classList.add("favorite-link-item");
+      div.classList.add("favorite-links-item");
 
       const $template = /*html*/ `
         <div class="favorite-header">
@@ -63,4 +62,8 @@ function renderFavorites() {
       $content.appendChild(div);
     });
   });
+}
+
+function clearFavoritesList() {
+  $content.textContent = "";
 }
