@@ -21,7 +21,6 @@ Nos links abaixo você pode aprender a base que precisa para criar sua extensão
 - HTML
 - CSS
 - JS
-- Bootstrap
 - Git e GitHub
 
 
@@ -35,7 +34,7 @@ Nos links abaixo você pode aprender a base que precisa para criar sua extensão
 ## 🔛 Usando esse repositório:
 ### Clonando o repositório
 ```
-  git clone https://github.com/ricarthlima/chrome-extension-favs-balle.git
+  git clone https://github.com/jotahdavid/chrome-extension-favs-balle.git
 ```
 
 ## 🤜🤛 Contribuições:
