@@ -4,35 +4,36 @@
         <title>Favs</title>
         <meta charset="utf-8">
 
-        <!-- Linkar nosso arquivo CSS -->
-        <link rel="stylesheet" href="styles/style.css">
-
         <!-- Importar Font Red Hat Display-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700;900&display=swap" rel="stylesheet">
+        
+        <!-- Linkar nosso arquivo CSS -->
+        <link rel="stylesheet" href="styles/style.css">
     </head>
 
     <body>
-        <div id = "navbar">
-            <div id = "navbar-icon">
+        <div id="navbar">
+            <div id="navbar-icon">
                 <img src="assets/icon.png">
             </div>
-            <div id = "navbar-title">
+            <div id="navbar-title">
                 Favs
             </div>
-            <div id = "navbar-button">
-                <button id = "button-newfav" class = "btn btn-link">
+            <div id="navbar-button">
+                <button id="button-newfav" class="btn btn-link">
                     <img src="assets/save_fav.png">
                 </button>                
             </div>
         </div>
 
-        <div id = "content">
+        <div id="content">
             <h1>
                 Aqui estão todos os <i>favs</i><br>
                 que você adicionou ;)
             </h1>
+			<div id="favorites-link-list"></div>
         </div>
         
         <script src="scripts/script.js"></script>

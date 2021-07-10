@@ -77,19 +77,19 @@ i {
   text-align: center;
 }
 
-.sm-img {
+.favorite-img {
   width: 32px;
   height: 32px;
   margin: auto;
 }
 
-.favorite-links-item {
+.favorite-link-item {
   margin: 15px 0;
   display: flex;
   width: 100%;
 }
 
-.link-header {
+.favorite-header {
   background-color: #242423;
   border: 1px solid #242423;
   border-radius: 20px 0px 0px 20px;
@@ -98,11 +98,9 @@ i {
   width: 60px;
   display: flex;
   justify-content: center;
-
-  /*padding-top: 30px;*/
 }
 
-.link-body-container {
+.favorite-content-container {
   background-color: #fff;
   border: 1px solid #242423;
   border-radius: 0px 20px 20px 0px;
@@ -111,7 +109,7 @@ i {
   width: 100%;
 }
 
-.link-body-content {
+.favorite-content {
   display: flex;
   gap: .5rem;
   justify-content: space-between;
@@ -119,7 +117,7 @@ i {
   margin-right: 37px;
 }
 
-.link-title {
+.favorite-title {
   font-size: 1.25em;
   font-weight: bolder;
   text-align: left;

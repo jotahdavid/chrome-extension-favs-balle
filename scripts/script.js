@@ -34,32 +34,32 @@ function getAllFavorites() {
 }
 
 function renderFavorites(favoritesList) {
-  const $content = document.querySelector("#content");
+  const $content = document.querySelector("#favorites-link-list");
   $content.textContent = "";
 
   favoritesList.forEach(({ title, url, favIconUrl }) => {
     const template = /*html*/ `
-      <div class = "favorite-links-item">
-        <div class = "link-header">
-          <img src = "${favIconUrl}" class = "sm-img">
-        </div>
+      <div class="favorite-header">
+        <img src="${favIconUrl}" class="favorite-img">
+      </div>
 
-        <div class = "link-body-container">
-          <div class = "link-body-content">
-            <div class = "link-title">${title}</div>
+      <div class="favorite-content-container">
+        <div class="favorite-content">
+          <div class="favorite-title">
+            ${title}
+          </div>
 
-            <div class = "link-icon">
-              <a href="${url}" target = "_blank">
-                <img src = "assets/link.png" class = "sm-img">
-              </a>
-            </div>
-          </div> 
-        </div>
+          <div class="favorite-icon">
+            <a href="${url}" target="_blank">
+              <img src="assets/link.png" class="favorite-img">
+            </a>
+          </div>
+        </div> 
       </div>
     `;
 
     const div = document.createElement("div");
-    div.classList.add("favorite-links-list");
+    div.classList.add("favorite-link-item");
     div.insertAdjacentHTML("beforeend", template);
 
     $content.appendChild(div);
