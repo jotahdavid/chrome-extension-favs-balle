@@ -1,12 +1,24 @@
 const $starButton = document.querySelector("#star-button");
 const $content = document.querySelector("#favorite-links-list");
 
-$starButton.addEventListener("click", addNewFavorite);
+let currentTabIsFavorite = false;
+
+$starButton.addEventListener("click", handleStarClick);
 
 window.addEventListener("load", () => {
   renderFavorites();
   checkIfCurrentTabIsFavorite();
 });
+
+function handleStarClick() {
+  if(currentTabIsFavorite) {
+    desactivateStar();
+    removeCurrentTabAsFavorite();
+  } else {
+    activateStar();
+    addNewFavorite();
+  }
+}
 
 async function getTabData() {
   const queryOptions = { active: true, currentWindow: true };
@@ -27,8 +39,29 @@ function addNewFavorite() {
         favoritesList.push(currentTabData);
     
         chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, () => {
+          checkIfCurrentTabIsFavorite();
           renderFavorites();
-          activateStar();
+        });
+      });
+    });
+}
+
+function removeCurrentTabAsFavorite() {
+  getTabData()
+    .then((currentTab) => {
+      chrome.storage.sync.get("STORAGE_KEY", (result) => {
+        const favoritesList = JSON.parse(result["STORAGE_KEY"]);
+
+        favoritesList.every((favorite, index) => {
+          if(currentTab.url === favorite.url) {
+            favoritesList.splice(index, 1);
+            chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, () => {
+              checkIfCurrentTabIsFavorite();
+              renderFavorites();
+            });
+            return false;
+          }
+          return true;
         });
       });
     });
@@ -83,13 +116,17 @@ function checkIfCurrentTabIsFavorite() {
 
         const favoritesList = JSON.parse(result["STORAGE_KEY"]);
 
-        favoritesList.forEach((favorite) => {
-          if(currentTab.url === favorite.url) activateStar();
-        });
+        currentTabIsFavorite = !favoritesList.every((favorite) => currentTab.url !== favorite.url);
+
+        if(currentTabIsFavorite) activateStar();
       });
     });
 }
 
 function activateStar() {
   $starButton.classList.add("--active");
+}
+
+function desactivateStar() {
+  $starButton.classList.remove("--active");
 }
