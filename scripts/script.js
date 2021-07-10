@@ -3,25 +3,27 @@ const $buttonNewFav = document.querySelector("#button-newfav");
 $buttonNewFav.addEventListener("click", getTabData);
 window.addEventListener("load", getAllFavorites);
 
-function getTabData() {
+async function getTabData() {
   const queryOptions = { active: true, currentWindow: true };
+  const [queryResult] = await chrome.tabs.query(queryOptions);
 
-  chrome.tabs.query(queryOptions, addNewFavorite);
+  return {
+    title: queryResult.title,
+    url: queryResult.url,
+    favIconUrl: queryResult.favIconUrl
+  };
 }
 
-function addNewFavorite([{ title, url, favIconUrl }]) {
-  const currentTabData = {
-    title,
-    url,
-    favIconUrl
-  };
-  
-  chrome.storage.sync.get("STORAGE_KEY", (result) => {
-    const favoritesList = result["STORAGE_KEY"] ? JSON.parse(result["STORAGE_KEY"]) : [];
-    favoritesList.push(currentTabData);
-
-    chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, getAllFavorites);
-  });
+function addNewFavorite() {
+  getTabData()
+    .then((currentTabData) => {
+      chrome.storage.sync.get("STORAGE_KEY", (result) => {
+        const favoritesList = result["STORAGE_KEY"] ? JSON.parse(result["STORAGE_KEY"]) : [];
+        favoritesList.push(currentTabData);
+    
+        chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, getAllFavorites);
+      });
+    });
 }
 
 function getAllFavorites() {
