@@ -1,6 +1,6 @@
 const $buttonNewFav = document.querySelector("#button-newfav");
-$buttonNewFav.addEventListener("click", getTabData);
 
+$buttonNewFav.addEventListener("click", getTabData);
 window.addEventListener("load", getAllFavorites);
 
 function getTabData() {
@@ -10,22 +10,17 @@ function getTabData() {
 }
 
 function addNewFavorite([{ title, url, favIconUrl }]) {
-  const tabData = {
+  const currentTabData = {
     title,
     url,
     favIconUrl
   };
-
-  let tabDataJSON = JSON.stringify(tabData);
   
   chrome.storage.sync.get("STORAGE_KEY", (result) => {
-    if(result["STORAGE_KEY"] !== undefined) {
-      tabDataJSON = result["STORAGE_KEY"] + "\n" + tabDataJSON;
-    }
+    const favoritesList = result["STORAGE_KEY"] ? JSON.parse(result["STORAGE_KEY"]) : [];
+    favoritesList.push(currentTabData);
 
-    chrome.storage.sync.set({"STORAGE_KEY": tabDataJSON}, () => {
-      getAllFavorites();
-    });
+    chrome.storage.sync.set({"STORAGE_KEY": JSON.stringify(favoritesList)}, getAllFavorites);
   });
 }
 
@@ -33,8 +28,8 @@ function getAllFavorites() {
   chrome.storage.sync.get("STORAGE_KEY", (result) => {
     if(!result["STORAGE_KEY"]) return;
 
-    const resultList = result["STORAGE_KEY"].split("\n");
-    renderFavorites(resultList);
+    const favoritesList = JSON.parse(result["STORAGE_KEY"]);
+    renderFavorites(favoritesList);
   });
 }
 
@@ -42,9 +37,7 @@ function renderFavorites(favoritesList) {
   const $content = document.querySelector("#content");
   $content.textContent = "";
 
-  favoritesList.forEach((item) => {
-    const { title, url, favIconUrl } = JSON.parse(item);
-
+  favoritesList.forEach(({ title, url, favIconUrl }) => {
     const template = /*html*/ `
       <div class = "favorite-links-item">
         <div class = "link-header">
