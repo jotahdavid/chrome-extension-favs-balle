@@ -1,6 +1,6 @@
-const $buttonNewFav = document.querySelector("#button-newfav");
+const $starButton = document.querySelector("#star-button");
 
-$buttonNewFav.addEventListener("click", getTabData);
+$starButton.addEventListener("click", addNewFavorite);
 window.addEventListener("load", getAllFavorites);
 
 async function getTabData() {
