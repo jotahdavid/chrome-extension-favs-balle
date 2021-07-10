@@ -23,10 +23,6 @@ h1 {
   font-weight: 900;
 }
 
-i {
-  color: #fca311;
-}
-
 #navbar {
   height: 64px;
   background-color: #242423;
@@ -40,6 +36,10 @@ i {
   align-items: center;
 }
 
+#navbar i {
+  display: block;
+}
+
 #navbar-title {
   color: #fca311;
   font-weight: bolder;
@@ -47,16 +47,25 @@ i {
   font-size: 1.2em;
 }
 
-#navbar-icon {
+#navbar-star {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 40px;
 }
 
-#navbar-icon > img {
-  display: block;
-  width: 100%;
+#navbar-star i {
+  color: rgb(167, 167, 167);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: .5rem;
+  transition: color .3s ease;
+}
+
+#navbar-star i:hover {
+  color: rgb(255, 232, 99);
+  font-size: 2rem;
 }
 
 #navbar-button {
@@ -71,18 +80,33 @@ i {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  padding: 0;
 }
 
-#navbar-button > #button-newfav > img {
-  display: block;
-  width: 100%;
+#navbar-button > #button-newfav {
+  color: #c07c10;
+  font-size: 1.8rem;
+  transition: color .3s ease;
+  padding: .5rem;
+}
+
+#navbar-button > #button-newfav:hover {
+  color: #fca311;
 }
 
 #content {
   padding: 40px 50px;
   justify-content: center;
   text-align: center;
+}
+
+#content-title {
+  max-width: 450px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#content-title > span {
+  color: #ff9d00;
 }
 
 .favorite-img {
@@ -131,4 +155,19 @@ i {
   font-size: 1.25em;
   font-weight: bolder;
   text-align: left;
+}
+
+.favorite-url {
+  display: block;
+  padding: .5rem;
+  color: #ca8311;
+  transition: color .3s ease;
+}
+
+.favorite-url > i {
+  font-size: 1.8rem;
+}
+
+.favorite-url:hover {
+  color: #fca311;
 }

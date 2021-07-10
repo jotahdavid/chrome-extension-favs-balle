@@ -4,33 +4,36 @@
         <title>Favs</title>
         <meta charset="utf-8">
 
-        <!-- Importar Font Red Hat Display-->
+        <!-- Import Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+        <!-- Import Font Red Hat Display -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700;900&display=swap" rel="stylesheet">
-        
-        <!-- Linkar nosso arquivo CSS -->
+
+        <!-- CSS -->
         <link rel="stylesheet" href="styles/style.css">
     </head>
 
     <body>
         <div id="navbar">
-            <div id="navbar-icon">
-                <img src="assets/icon.png">
+            <div id="navbar-star">
+                <i class="fas fa-star"></i>
             </div>
             <div id="navbar-title">
                 Favs
             </div>
             <div id="navbar-button">
-                <button id="button-newfav" class="btn btn-link">
-                    <img src="assets/save_fav.png">
+                <button id="button-newfav">
+                    <i class="fas fa-plus"></i>
                 </button>                
             </div>
         </div>
 
         <div id="content">
-            <h1>
-                Aqui estão todos os <i>favs</i><br>
+            <h1 id="content-title">
+                Aqui estão todos os <span>favs</span>
                 que você adicionou ;)
             </h1>
 			<div id="favorites-link-list"></div>

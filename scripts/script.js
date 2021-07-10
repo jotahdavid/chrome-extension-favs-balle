@@ -50,8 +50,8 @@ function renderFavorites(favoritesList) {
           </div>
 
           <div class="favorite-icon">
-            <a href="${url}" target="_blank">
-              <img src="assets/link.png" class="favorite-img">
+            <a class="favorite-url" href="${url}" target="_blank">
+              <i class="fas fa-external-link-alt"></i>
             </a>
           </div>
         </div> 
