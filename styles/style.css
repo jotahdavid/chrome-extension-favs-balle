@@ -126,6 +126,8 @@ i {
 }
 
 .favorite-title {
+  max-height: 80px;
+  overflow-y: hidden;
   font-size: 1.25em;
   font-weight: bolder;
   text-align: left;
